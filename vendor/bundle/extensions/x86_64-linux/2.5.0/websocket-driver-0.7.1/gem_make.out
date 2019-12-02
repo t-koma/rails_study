@@ -1,0 +1,15 @@
+current directory: /home/vagrant/workspace/emergency_food/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+/home/vagrant/.rbenv/versions/2.5.0/bin/ruby -r ./siteconf20191202-5355-ntpzz8.rb extconf.rb
+creating Makefile
+
+current directory: /home/vagrant/workspace/emergency_food/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /home/vagrant/workspace/emergency_food/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/vagrant/workspace/emergency_food/vendor/bundle/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20191202-5355-1f8gs6o
