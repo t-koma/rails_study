@@ -1,0 +1,25 @@
+// Place all the styles related to the menu controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.money_menu input , .user_menu input{
+	height: 30px;
+	width: 300px;
+}
+
+.money_menu td, .user_menu td{
+	padding-bottom:20px;
+}
+
+.menu{
+	text-align: center;
+	margin:0 auto;
+	margin-top:70px;
+	display: table;
+}
+
+.money_menu, .user_menu,.blank_menu{
+	display: table-cell;
+}
+.blank_menu{
+	width: 30px;
+}

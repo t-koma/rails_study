@@ -1,0 +1,27 @@
+<div class="login_content">
+	<div class="text">
+		<p>ユーザーIDとパスワードを入力してください</p>
+	</div>
+
+	<%= form_tag('/admin/login') do %>
+		<table class="login_date">
+			<tr>
+				<td class="input_user_id">ユーザーID：</td>
+				<td>
+					<input type="text" name="user_id" class="login_text">
+				</td>
+			</tr>
+			<tr>
+				<td class="input_pass">パスワード：</td>
+				<td>
+					<input type="password" name="pass" class="login_text">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit"  value="ログイン" class="login_btn">
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>

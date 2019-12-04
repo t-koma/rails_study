@@ -1,0 +1,31 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.login_content {
+	margin:auto;
+	font-size: 15px;
+	text-align: center;
+	margin-top:40px;
+}
+
+ul{
+	list-style: none;
+}
+
+.login_text{
+	width: 170px;
+	margin: 0 auto;
+}
+
+.login_date{
+	margin: 0 auto;
+}
+
+.login_btn{
+	width: 277px;
+	margin-top: 20px;
+}
+
+td{
+	padding-top: 10px; 
+}

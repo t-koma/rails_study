@@ -10,6 +10,37 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+        <div class="logo">
+          <%= image_tag('food_cup_ra-men_open.png', :size => '70x70',:class => 'logo_img') %>
+          <%= link_to "非常食部","/menu/index", class: "logo_text" %>
+
+          <% if @current_user %>
+            <span class="menu_link">
+              <%= "ログイン：#{@current_user.name}" %>  
+              <a href="/money/bank_statement">入出金履歴</a>
+              <a href="/money/shopping_history">買い出し管理</a>
+              <a href="/money/collection">徴収管理</a>
+              <a href="/user/info">顧客情報管理</a>
+              <a href="/user/hope">要望管理</a>
+              <a href="/admin/index">管理者登録/編集</a>
+              <%= link_to "ログアウト","/admin/logout", method: "POST" ,class: "logout" %>
+            </span>
+          <% end %>
+        </div>
+    </header>
+
+    <main>  
+      <% if flash[:notice] %>
+      <div class="flash">
+          <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+      <%= yield %>
+    </main> 
+
   </body>
+
 </html>
