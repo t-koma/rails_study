@@ -1,0 +1,67 @@
+<div class="state_table">
+	<div class="head_text"><span>入出金履歴編集</span></div>
+
+	<div class="recontents">
+		<%= form_tag("/money/#{@bank_data.id}/update") do %>
+			<div class="data_contents">
+				<span>日付</span>
+				<br>
+				<input type="text" name="date" value="<%= @bank_data.bank_day.strftime('%Y/%m/%d') %>">
+			</div>
+			<div class="data_contents">
+				<span>入庫数</span>
+				<br>
+				<input type="text" name="wareh" value="<%= @bank_data.warehousing %>">
+			</div>
+			<div class="data_contents">
+				<span>入出金元</span>
+				<br>
+				<% @admin = Admin.find_by(user_id: @bank_data.wh_id) %>
+				<% @admins = Admin.all.order(user_id: "asc") %>
+				<select name="wh_name" size="1">
+					<option value="<%= @admin.user_id %>"><%= @admin.name %></option>
+					<% for admin in @admins do %>
+					<option value="<%= admin.user_id %>"><%= admin.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<div class="data_contents">
+				<span>金額</span>
+				<br>
+				<input type="text" name="money" value="<%= @bank_data.money %>">
+			</div>
+			<div class="data_contents">
+				<span>返金</span>
+				<br>
+				<ul>
+				<!-- 入金時 -->
+				<% if @bank_data.warehousing == nil %>
+					<li><input class="btn_disable" type="radio" name="radio" value= "nil" checked="checked">非常食部会計</li>
+					<li><input class="btn_disable" type="radio" name="radio" value= "false">未返金</li>
+					<li><input class="btn_disable" type="radio" name="radio" value= "true">返金済</li>
+				<!-- 初期値が非常食部財布で入荷した場合 -->
+				<% elsif @bank_data.warehousing > 0 && @bank_data.wh_id == @club_user %>
+					<li><input type="radio" name="radio" value= "nil" checked="checked">非常食部会計</li>
+					<li><input type="radio" name="radio" value= "false">未返金</li>
+					<li><input type="radio" name="radio" value= "true">返金済</li>
+				<!-- 初期値が立替て入荷したがすでに非常食部財布から返却した場合 -->
+				<% elsif @bank_data.warehousing > 0 && @bank_data.return_money && @bank_data.wh_id != @club_user %>
+					<li><input type="radio" name="radio" value= "nil">非常食部会計</li>
+					<li><input type="radio" name="radio" value= "false">未返金</li>
+					<li><input type="radio" name="radio" value= "true" checked="checked">返金済</li>
+				<!-- 初期値が立替て入荷したがまだ非常食部財布から返却していない場合 -->
+				<% elsif @bank_data.warehousing > 0 && @bank_data.return_money == false && @bank_data.wh_id != @club_user %>
+					<li><input type="radio" name="radio" value= "nil">非常食部会計</li>
+					<li><input type="radio" name="radio" value= "false" checked="checked">未返金</li>
+					<li><input type="radio" name="radio" value= "true" >返金済</li>
+				<% else %>
+					Error!
+				<% end %>
+				</ul>
+			</div>
+			<div class="edit_btn">
+				<input type="submit" value="更新">
+			</div>
+		<% end %>
+	</div>
+</div>

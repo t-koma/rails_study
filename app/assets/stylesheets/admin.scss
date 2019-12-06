@@ -21,11 +21,51 @@ ul{
 	margin: 0 auto;
 }
 
-.login_btn{
+.login_btn,.create_btn input{
 	width: 277px;
 	margin-top: 20px;
+	text-decoration: none;
+	border: solid 2px #8ac6d1;
+    border-radius: 3px;
+    transition: .4s;
+	background-color: white;
+	color: #8ac6d1;
 }
 
-td{
+.login_btn:hover,.create_btn input:hover{
+  background: #8ac6d1;
+  color: white;
+  cursor: pointer;
+}
+
+
+.login_date td{
 	padding-top: 10px; 
+	border:none;
+}
+
+.state_table{
+	width: 750px;
+	text-align: center;
+	margin:0 auto;
+	margin-top:50px;
+}
+
+.state_table table{
+	border-collapse:  collapse;
+	cursor: default;
+}
+
+.state_table th,td{
+	border: 1px black solid;
+	width: 150px;
+	height:35px;
+}
+
+.state_table th{
+	background-color: #ffb6b9;
+}
+
+.repass{
+	text-align: left;
 }

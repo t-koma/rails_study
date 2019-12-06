@@ -1,0 +1,21 @@
+<div class="state_table">
+	<div class="head_text"><span>顧客情報編集</span></div>
+
+	<div class="recontents">
+		<%= form_tag("/user/#{@user.id}/update") do %>
+			<div class="data_contents">
+				<span>氏名</span>
+				<br>
+				<input type="text" name="name" value = "<%= @user.name %>">
+			</div>
+			<div class="edit_btn">
+				<input type="submit" value="更新">
+			</div>
+		<% end %>
+		<%= form_tag("/user/#{@user.id}/destroy") do %>
+			<div class="dest_btn">
+				<input type="submit" value="削除">
+			</div>
+		<% end %>
+	</div>
+</div>

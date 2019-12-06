@@ -1,2 +1,78 @@
-<h1>Money#bank_statement</h1>
-<p>Find me in app/views/money/bank_statement.html.erb</p>
+<script>
+    //function back_color_fixed(id_name,fixed_color) {
+        //alert("Pushed!");
+        //document.getElementById(id_name).style.backgroundColor = fixed_color;
+   // }
+
+    $(function() {
+        $('#bank_history_table').on('click', function() {
+          var td = $(this)[0];
+          var tr = $(this).closest('tr')[0];
+          console.log('td:' + td.cellIndex);
+         //console.log('tr:' + tr.rowIndex);
+         console.log($(this).text());
+        });
+      });
+</script>
+
+<div class="contents">
+	<div class="state_table">
+		<div class="head_text"><span>入出金管理</span></div>
+		<table id="bank_history_table">
+			<tr>
+				<th>日付</th>
+				<th>入庫数</th>
+				<th>入出金元</th>
+				<th>金額</th>
+				<th>返金</th>
+				<th>編集</th>
+			</tr>
+			<!-- テーブルのデータ分繰り返す -->
+			<% for bank in @banks do %>
+				<% admin = Admin.find_by(user_id: bank.wh_id) %>
+				<%= form_tag("/money/#{bank.id}/edit") do %>
+				<tr>
+					<td><%= bank.bank_day.strftime('%Y/%m/%d') %></td>
+					<td><%= bank.warehousing.to_i %></td>
+					<td><%= admin.name %></td>
+					<td><%= bank.money %></td>
+					<td>
+						<!-- 非常食部財布で入荷した場合 -->
+						<% if bank.warehousing.to_i > 0 && bank.wh_id == @club_user %>
+							<% @Balance = @Balance - bank.money.to_i %>
+						<!-- 立替て入荷したがすでに非常食部財布から返却した場合 -->
+						<% elsif bank.warehousing.to_i > 0 && bank.return_money && bank.wh_id != @club_user %>
+							返金済
+							<% @Balance = @Balance - bank.money.to_i %>
+						<!-- 立替て入荷したがまだ非常食部財布から返却していない場合 -->
+						<% elsif bank.warehousing.to_i > 0 && bank.return_money == false && bank.wh_id != @club_user %>
+							未返金
+						<!-- 入金時 -->
+						<% elsif bank.warehousing == nil %>
+							<% @Balance = @Balance + bank.money.to_i %>
+							徴収
+						<% else %>
+							Error!
+						<% end %>
+					</td>
+					<td class="edit_btn"><input type="submit" value="編集" ></td>
+				</tr>
+				<% end %>
+				
+			<% end %>
+			<!-- ここまで -->
+				<tr>
+					<td colspan="3" class="right_text">残高</td>
+					<td><%= @Balance %></td>
+					<td colspan="2" class="left_text">円</td>
+				</tr>
+
+			</table>
+		
+				
+	</div>
+
+</div>
+
+
+

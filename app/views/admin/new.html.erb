@@ -1,0 +1,32 @@
+<div class="state_table">
+	<div class="head_text"><span>管理者新規作成</span></div>
+
+	<div class="recontents">
+		<%= form_tag("/admin/create") do %>
+			<div class="data_contents">
+				<span>ユーザID(半角数字)</span>
+				<br>
+				<input type="text" name="user_id">
+			</div>
+			<div class="data_contents">
+				<span>氏名</span>
+				<br>
+				<input type="text" name="name">
+			</div>
+			<div class="data_contents">
+				<span>パスワード</span>
+				<br>
+				<input type="password" name="pass">
+			</div>
+			<div class="data_contents">
+				<span class="repass">もう一度パスワードを入力してください</span>
+				<br>
+				<br>
+				<input type="password" name="pass_confirmation">
+			</div>
+			<div class="edit_btn">
+				<input type="submit" value="更新">
+			</div>
+		<% end %>
+	</div>
+</div>

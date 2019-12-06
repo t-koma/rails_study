@@ -1,3 +1,21 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.dest_btn{
+	margin-top: 20px;
+}
+
+.dest_btn input{
+	width: 100px;
+	text-decoration: none;
+	border: solid 2px #8ac6d1;
+    border-radius: 3px;
+    transition: .4s;
+	background-color: white;
+	color: #8ac6d1;
+}
+.dest_btn input:hover {
+	background: #8ac6d1;
+	color: white;
+  	cursor: pointer;
+}

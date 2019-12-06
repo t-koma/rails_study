@@ -4,10 +4,27 @@
 .money_menu input , .user_menu input{
 	height: 30px;
 	width: 300px;
+	text-decoration: none;
+	border: solid 2px #8ac6d1;
+    border-radius: 3px;
+    transition: .4s;
+	background-color: white;
+	color: #8ac6d1;
+}
+
+.money_menu input:hover,.user_menu input:hover {
+  background: #8ac6d1;
+  color: white;
+  cursor: pointer;
+
 }
 
 .money_menu td, .user_menu td{
 	padding-bottom:20px;
+}
+
+.money_menu td, .money_menu th, .user_menu td, .user_menu th{
+	border:none;
 }
 
 .menu{

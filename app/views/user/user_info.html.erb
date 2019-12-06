@@ -1,1 +1,27 @@
-<h1>顧客情報管理</h1>
+<div class="contents">
+	<div class="state_table">
+		<div class="head_text"><span>顧客情報管理</span></div>
+		<table>
+			<tr>
+				<th>ユーザーID</th>
+				<th>名前</th>
+				<th>編集</th>
+			</tr>
+
+			<% for user in @users do %>
+				<%= form_tag("/user/#{user.id}/edit") do %>
+					<tr>
+						<td><%= user.id %></td>
+						<td><%= user.name %></td>
+						<td class="edit_btn"><input type="submit" name="fixed" value="詳細"></td>				
+					</tr>
+				<% end %>
+			<% end %>
+		</table>
+
+		<%= form_tag("/user/new") do %>
+			<div class="create_btn"><input type="submit" name="create" value="新規登録"></div>
+		<% end %>
+
+	</div>
+</div>

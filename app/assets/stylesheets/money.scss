@@ -1,3 +1,94 @@
 // Place all the styles related to the money controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.right_text,.left_text{
+	background-color: #ffb6b9;
+}
+
+.right_text{
+	text-align: right;
+}
+
+.left_text{
+	text-align: left;
+
+}
+
+.head_text{
+	width: 750px;
+	background-color: #bbded6;
+	margin-bottom: 20px;
+}
+
+.head_text span{
+	text-align: center;
+	width: 750px;
+}
+
+.state_table{
+	width: 750px;
+	text-align: center;
+	margin:0 auto;
+	margin-top:50px;
+}
+
+.state_table table{
+	border-collapse:  collapse;
+	cursor: default;
+	margin: 0 auto;
+}
+
+.state_table th,td{
+	border: 1px black solid;
+	width: 150px;
+	height:35px;
+}
+
+.state_table th{
+	background-color: #ffb6b9;
+}
+
+
+.edit_btn input{
+	width: 100px;
+	text-decoration: none;
+	border: solid 2px #8ac6d1;
+    border-radius: 3px;
+    transition: .4s;
+	background-color: white;
+	color: #8ac6d1;
+}
+.edit_btn input:hover {
+	background: #8ac6d1;
+	color: white;
+  	cursor: pointer;
+}
+
+.recontents{
+	text-align: center;
+	width: 165px;
+	margin: 0 auto;
+}
+
+.data_contents {
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.data_contents span{
+	position: absolute;
+	left:0px;
+}
+
+.data_contents select{
+	width:160px;
+}
+
+.data_contents ul{
+	padding:0px;
+	text-align: left;
+}
+
+.btn_disable{
+	pointer-events : none;
+}
