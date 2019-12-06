@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_action :check_login_user
+  
   def user_info
   	@users = User.all.order("id")
   end

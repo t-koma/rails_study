@@ -1,0 +1,37 @@
+<div class="state_table">
+	<div class="head_text"><span>入庫情報入力</span></div>
+		<div class="recontents">
+			<%= form_tag("/money/create") do %>
+				<div class="data_contents">
+					<span>日付</span>
+					<br>
+					<input type="text" name="money_date" value="<%= Date.today.strftime('%Y/%m/%d') %>">
+				</div>
+				<div class="data_contents">
+					<span>金額</span>
+					<br>
+					<input type="text" name="money">
+				</div>
+				<div class="data_contents">
+					<span>入庫数</span>
+					<br>
+					<input type="text" name="warehousing">
+				</div>
+				<div class="data_contents">
+					<span>出金元</span>
+					<br>
+					<% @admins = Admin.all.order(user_id: "asc") %>
+					<select name="wh_name" size="1">
+						<option value="<%= @current_user.user_id %>"><%= @current_user.name %></option>
+						<% for admin in @admins do %>
+						<option value="<%= admin.user_id %>"><%= admin.name %></option>
+						<% end %>
+					</select>
+				</div>
+				<div class="edit_btn">
+					<input type="submit" value="更新">
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

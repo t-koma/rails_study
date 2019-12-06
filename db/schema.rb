@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_064520) do
+ActiveRecord::Schema.define(version: 2019_12_06_054518) do
 
   create_table "admins", force: :cascade do |t|
     t.string "user_id"
@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 2019_12_05_064520) do
   end
 
   create_table "banks", force: :cascade do |t|
-    t.datetime "bank_day"
+    t.date "bank_day"
     t.integer "warehousing"
     t.text "wh_id"
     t.integer "money"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "return_money"
+    t.integer "return_money"
     t.boolean "check_edit"
   end
 

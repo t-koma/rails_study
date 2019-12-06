@@ -36,26 +36,28 @@
 				<ul>
 				<!-- 入金時 -->
 				<% if @bank_data.warehousing == nil %>
-					<li><input class="btn_disable" type="radio" name="radio" value= "nil" checked="checked">非常食部会計</li>
-					<li><input class="btn_disable" type="radio" name="radio" value= "false">未返金</li>
-					<li><input class="btn_disable" type="radio" name="radio" value= "true">返金済</li>
+					<li><input class="btn_disable" type="radio" name="radio" value= "0" checked="checked">非常食部会計</li>
+					<li><input class="btn_disable" type="radio" name="radio" value= "2">未返金</li>
+					<li><input class="btn_disable" type="radio" name="radio" value= "1">返金済</li>
 				<!-- 初期値が非常食部財布で入荷した場合 -->
 				<% elsif @bank_data.warehousing > 0 && @bank_data.wh_id == @club_user %>
-					<li><input type="radio" name="radio" value= "nil" checked="checked">非常食部会計</li>
-					<li><input type="radio" name="radio" value= "false">未返金</li>
-					<li><input type="radio" name="radio" value= "true">返金済</li>
+					<li><input type="radio" name="radio" value= "0" checked="checked">非常食部会計</li>
+					<li><input type="radio" name="radio" value= "2">未返金</li>
+					<li><input type="radio" name="radio" value= "1">返金済</li>
 				<!-- 初期値が立替て入荷したがすでに非常食部財布から返却した場合 -->
-				<% elsif @bank_data.warehousing > 0 && @bank_data.return_money && @bank_data.wh_id != @club_user %>
-					<li><input type="radio" name="radio" value= "nil">非常食部会計</li>
-					<li><input type="radio" name="radio" value= "false">未返金</li>
-					<li><input type="radio" name="radio" value= "true" checked="checked">返金済</li>
+				<% elsif @bank_data.warehousing > 0 && @bank_data.return_money == 1 && @bank_data.wh_id != @club_user %>
+					<li><input type="radio" name="radio" value= "0">非常食部会計</li>
+					<li><input type="radio" name="radio" value= "2">未返金</li>
+					<li><input type="radio" name="radio" value= "1" checked="checked">返金済</li>
 				<!-- 初期値が立替て入荷したがまだ非常食部財布から返却していない場合 -->
-				<% elsif @bank_data.warehousing > 0 && @bank_data.return_money == false && @bank_data.wh_id != @club_user %>
-					<li><input type="radio" name="radio" value= "nil">非常食部会計</li>
-					<li><input type="radio" name="radio" value= "false" checked="checked">未返金</li>
-					<li><input type="radio" name="radio" value= "true" >返金済</li>
+				<% elsif @bank_data.warehousing > 0 && @bank_data.return_money == 2 && @bank_data.wh_id != @club_user %>
+					<li><input type="radio" name="radio" value= "0">非常食部会計</li>
+					<li><input type="radio" name="radio" value= "2" checked="checked">未返金</li>
+					<li><input type="radio" name="radio" value= "1" >返金済</li>
 				<% else %>
-					Error!
+					<li><input type="radio" name="radio" value= "0">非常食部会計</li>
+					<li><input type="radio" name="radio" value= "2">未返金</li>
+					<li><input type="radio" name="radio" value= "1">返金済</li>
 				<% end %>
 				</ul>
 			</div>

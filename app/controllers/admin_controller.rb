@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_action :set_current_user
+  before_action :check_login_user, only: [:logout, :admin_user_index, :new, :create, :edit, :update]
 
   def login
   	@admin = Admin.find_by(user_id: params[:user_id], pass: params[:pass])
