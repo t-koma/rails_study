@@ -1,0 +1,2 @@
+module HopeHelper
+end

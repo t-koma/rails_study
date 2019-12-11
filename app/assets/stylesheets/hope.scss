@@ -1,0 +1,35 @@
+// Place all the styles related to the hope controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.hope_user{
+	width: 300px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.hope_contents{
+	width: 300px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.hope_contents textarea{
+	width:300px;
+	height: 150px;
+	margin-bottom: 25px;
+}
+.hope_contents span{
+	position: absolute;
+	left:0px;
+}
+
+.hope_user select{
+	width: 300px;
+	margin-bottom: 25px;
+}
+.hope_user span{
+	position: absolute;
+	left:0px;
+
+}
+

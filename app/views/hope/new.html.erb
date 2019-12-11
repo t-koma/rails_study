@@ -1,0 +1,25 @@
+<div class="contents">
+	<div class="state_table">
+		<div class="head_text"><span>要望新規追加</span></div>
+		<%= form_tag("/hope/create") do %>
+			<div class="hope_user">
+				<span>ユーザー名</span>
+				<br>
+				<select name="user_id" size="1">
+					<% @users = User.all.order(:id) %>
+					<% for user in @users do %>
+					<option value="<%= user.id %>"><%= user.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<div class="hope_contents">
+				<span>要望 ※20文字以内</span>
+				<br>
+				<textarea name="contents"></textarea>
+			</div>
+			<div class="edit_btn">
+				<input type="submit" name="submit" value="登録">
+			</div>
+		<% end %>
+	</div>
+</div>

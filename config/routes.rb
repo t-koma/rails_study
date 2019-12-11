@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'hope/index'
   get 'money/bank_statement' => 'money#bank_statement'
   get 'money/shopping_history' => 'money#shopping_history'
   get 'money/collection' => 'money#collection'
@@ -21,12 +22,18 @@ Rails.application.routes.draw do
   get 'menu/index'
   get 'admin/login' => 'admin#login_form'
   get 'user/info' => 'user#user_info'
-  get 'user/hope' => 'user#hope'
   post 'user/new' => 'user#new'
   post 'user/create' => 'user#create'
   post 'user/:id/edit' => 'user#edit'
   post 'user/:id/update' => 'user#update'
   post 'user/:id/destroy' => 'user#destroy'
+
+  get 'hope/index' => 'hope#index'
+  post 'hope/new' => 'hope#new'
+  post 'hope/:id/edit' => 'hope#edit'
+  post 'hope/create' => 'hope#create'
+  post 'hope/:id/update' => 'hope#update'
+  post 'hope/:id/destroy' => 'hope#destroy'
 
   post 'admin/login' => 'admin#login'
   post 'admin/logout' => 'admin#logout'
