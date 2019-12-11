@@ -1,0 +1,40 @@
+<div class="state_table">
+	<div class="head_text"><span>徴収管理個人履歴</span></div>
+		<div class="recontents hw_size">
+			<table class="history_data">
+				<tr>
+					<th>ID</th>
+					<th>氏名</th>
+					<th>請求日</th>
+					<th>請求金額</th>
+					<th>徴収日</th>
+					<th>徴収金額</th>
+					<th>徴収者</th>
+					<th>編集</th>
+				</tr>
+					<% for cla in @clas do %>
+					<tr>
+						<% @user = User.find_by(id: cla.user_id) 
+						    coll = Collect.find_by(claim_id:cla.id) %>
+						<%= form_tag("/money/#{cla.id}/history_fixed", method: :post) do %>
+							<td><%= cla.id %></td>
+							<td><%= @user.name %></td>
+							<td><%= cla.claim_day.strftime('%Y/%m/%d') %></td>
+							<td><%= cla.claim %></td>
+							<% if coll %>
+								<td><%= coll.collect_day.strftime('%Y/%m/%d') %></td>	
+								<td><%= coll.collect %></td>
+								<% admin = Admin.find_by(user_id:coll.admin_user_id) %>
+								<td><%= admin.name %></td>
+							<% else %>
+								<td></td>
+								<td></td>
+								<td></td>
+							<% end %>
+							<td class="edit_btn"><input type="submit" name="fixed_btn" value="修正"></td>
+						<% end %>
+					</tr>
+					<% end %>
+			</table>
+		</div>
+</div>

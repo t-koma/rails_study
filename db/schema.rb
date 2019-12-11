@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_054518) do
+ActiveRecord::Schema.define(version: 2019_12_09_070059) do
 
   create_table "admins", force: :cascade do |t|
     t.string "user_id"
@@ -29,6 +29,25 @@ ActiveRecord::Schema.define(version: 2019_12_06_054518) do
     t.datetime "updated_at", null: false
     t.integer "return_money"
     t.boolean "check_edit"
+  end
+
+  create_table "claims", force: :cascade do |t|
+    t.date "claim_day"
+    t.text "user_id"
+    t.integer "claim"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "pay"
+  end
+
+  create_table "collects", force: :cascade do |t|
+    t.text "user_id"
+    t.integer "collect"
+    t.date "collect_day"
+    t.text "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "claim_id"
   end
 
   create_table "users", force: :cascade do |t|

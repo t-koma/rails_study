@@ -1,0 +1,5 @@
+class ChangeClaimColumn < ActiveRecord::Migration[5.2]
+  def change
+  	add_column :claims, :pay, :boolean
+  end
+end

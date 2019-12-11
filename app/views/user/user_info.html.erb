@@ -6,6 +6,7 @@
 				<th>ユーザーID</th>
 				<th>名前</th>
 				<th>編集</th>
+				<th>履歴</th>
 			</tr>
 
 			<% for user in @users do %>
@@ -13,7 +14,8 @@
 					<tr>
 						<td><%= user.id %></td>
 						<td><%= user.name %></td>
-						<td class="edit_btn"><input type="submit" name="fixed" value="詳細"></td>				
+						<td class="edit_btn"><input type="submit" name="fixed" value="詳細"></td>
+						<td class="edit_btn"><input type="submit" name="history" value="履歴"></td>				
 					</tr>
 				<% end %>
 			<% end %>

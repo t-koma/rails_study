@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  claim_day: 2019-12-09
+  user_id: MyText
+  claim: 1
+
+two:
+  claim_day: 2019-12-09
+  user_id: MyText
+  claim: 1

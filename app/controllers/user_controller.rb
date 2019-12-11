@@ -3,6 +3,9 @@ class UserController < ApplicationController
   
   def user_info
   	@users = User.all.order("id")
+    if params[:history]
+      render("money/history")
+    end
   end
 
   def hope
@@ -26,7 +29,14 @@ class UserController < ApplicationController
   end
 
   def edit
-  	@user = User.find_by(id:params[:id])
+  	
+    if params[:history]
+      redirect_to("/money/#{params[:id]}/history")
+    elsif params[:fixed]
+      @user = User.find_by(id:params[:id])
+    else
+      redirect_to("/menu/index")
+    end
   end
 
   def update

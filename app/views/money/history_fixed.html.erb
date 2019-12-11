@@ -1,0 +1,50 @@
+<div class="state_table">
+	<div class="head_text"><span>徴収管理個人履歴修正</span></div>
+		<div class="recontents">
+			<%= form_tag("/money/#{@cla.id}/history_update") do %>
+				<div class="data_contents">
+					<span>氏名</span>
+					<br>
+					<input type="text" name="user_name" value="<%= @user.name %>" disabled>
+					<input type="hidden" name="user_id" value="<%= @user.id %>"> 
+					<br>
+					<span>請求日</span>
+					<br>
+					<input type="text" name="claim_day" value = "<%= @cla.claim_day.strftime('%Y/%m/%d') %>">
+					<br>
+					<span>請求金額</span>
+					<br>
+					<input type="text" name="claim_money" value="<%= @cla.claim %>">
+					<br>
+					<span>徴収日</span>
+					<br>
+					<% if @coll %>
+						<input type="text" name="collect_day" value = "<%= @coll.collect_day.strftime('%Y/%m/%d') %>">
+					<% else %>
+						<input type="text" name="collect_day" value = "<%= Date.today.strftime('%Y/%m/%d') %>">
+					<% end %>
+					<br>
+					<span>徴収金額</span>
+					<br>
+					<% if @coll %>
+						<input type="text" name="collect_money" value=" <%= @coll.collect %>">
+					<% else %>
+						<input type="text" name="collect_money" class="uncollect">
+					<% end %>
+					<br>
+					<span>管理者</span>
+					<br>
+					<% @admins = Admin.all.order(user_id: "asc") %>
+					<select name="admin_id" size="1">
+						<option value="<%= @admin.user_id %>"><%= @admin.name %></option>
+						<% for admin in @admins do %>
+						<option value="<%= admin.user_id %>"><%= admin.name %></option>
+						<% end %>
+					</select>
+				</div>
+				<div class="edit_btn">
+					<input type="submit" value="更新">
+				</div>
+			<% end %>
+		</div>
+</div>

@@ -1,0 +1,27 @@
+<div class="state_table">
+	<div class="head_text"><span>請求入力</span></div>
+		<div class="recontents">
+			<%= form_tag("/money/claim_create") do %>
+				<div class="data_contents">
+					<span>氏名</span>
+					<br>
+					<select name="user_id" size="1">
+						<% for user in @users do %>
+							<option value="<%= user.id %>"><%= user.name %></option>
+						<% end %>
+					</select>
+					<br>
+					<span>請求金額</span>
+					<br>
+					<input type="text" name="claim_money">
+					<br>
+					<span>請求日</span>
+					<br>
+					<input type="text" name="claim_day" value = "<%= Date.today.strftime('%Y/%m/%d') %>">
+				</div>
+				<div class="edit_btn">
+					<input type="submit" value="更新">
+				</div>
+			<% end %>
+		</div>
+</div>

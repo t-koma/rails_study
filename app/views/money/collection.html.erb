@@ -1,1 +1,36 @@
-<h1>徴収管理</h1>
+<div class="state_table">
+	<div class="head_text"><span>徴収管理</span></div>
+		<div class="recontents hw_size">
+
+			<div class="claim_btn edit_btn">
+				<%= form_tag("/money/claim", method: :post) do %>
+					<input type="submit" name="claim" value="請求登録">
+				<% end %>
+			</div>
+
+			<table class="client_data">
+				<tr>
+					<th>ID</th>
+					<th>氏名</th>
+					<th>請求日</th>
+					<th>請求金額</th>
+					<th>徴収</th>
+				</tr>
+					<% for client in @clients do %>
+					<tr>
+						<%= form_tag("/money/#{client.id}/collect", method: :post) do %>
+						<% @user = User.find_by(id: client.user_id) %>
+						<td><%= client.id %></td>
+						<td><%= @user.name %></td>
+						<td><%= client.claim_day.strftime('%Y/%m/%d') %></td>
+						<td><%= client.claim %></td>	
+						<td class="edit_btn">
+							<input type="submit" name="collect" value="徴収">
+						</td>
+						
+						<% end %>
+					</tr>
+					<% end %>
+			</table>
+		</div>
+</div>

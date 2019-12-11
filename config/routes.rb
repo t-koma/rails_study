@@ -5,9 +5,18 @@ Rails.application.routes.draw do
   post 'money/new' => 'money#new'
   get 'money/new' => 'money#new'
   post 'money/create' => 'money#create'
+  post 'money/claim' => 'money#claim'
+  post 'money/claim_create' => 'money#claim_create'
+  post 'money/:id/collect_create' => 'money#collect_create'
   get 'money/:id/edit' => 'money#edit'
   post 'money/:id/edit' => 'money#edit'
   post 'money/:id/update' => 'money#update'
+  get 'money/:id/history' => 'money#history'
+  post 'money/:id/history_fixed' => 'money#history_fixed'
+  post 'money/:id/history_update' => 'money#history_update'
+  post 'money/:id/collect' => 'money#collect'
+  post 'money/:id/client' => 'money#client'
+
   
   get 'menu/index'
   get 'admin/login' => 'admin#login_form'

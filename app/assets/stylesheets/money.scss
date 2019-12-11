@@ -78,10 +78,12 @@
 .data_contents span{
 	position: absolute;
 	left:0px;
+	margin-top: 10px;
 }
 
 .data_contents select{
 	width:160px;
+	margin-top: 10px;
 }
 
 .data_contents ul{
@@ -89,6 +91,54 @@
 	text-align: left;
 }
 
+.data_contents input{
+	margin-top: 10px;
+}
+
 .btn_disable{
 	pointer-events : none;
+}
+
+.client_data{
+	width: 600px;
+}
+
+.client_data th td{
+	width:100px;
+}
+
+.client_data input{
+	width:70px;
+}
+
+.collection_data th{
+	width:120px;
+}
+
+.collection_data input{
+	width:200px;
+}
+
+.hw_size{
+	height: 350px;
+	width: 750px;
+	text-align: center;
+}
+
+.claim_btn{
+	margin-bottom: 30px;
+}
+
+.dis_btn input{
+	text-decoration: none;
+	border: solid 2px #8ac6d1;
+    border-radius: 3px;
+    transition: .4s;
+	background-color: #dadada;
+	color: #8ac6d1;
+	
+}
+
+.uncollect{
+	background-color: #ffb6b9;
 }

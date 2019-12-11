@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyText
+  collect: 1
+  collect_day: 2019-12-09
+  admin_user_id: MyText
+
+two:
+  user_id: MyText
+  collect: 1
+  collect_day: 2019-12-09
+  admin_user_id: MyText
