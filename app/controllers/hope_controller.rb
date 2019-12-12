@@ -27,11 +27,11 @@ class HopeController < ApplicationController
   	#削除ボタン押下
   	if params[:complete]
   		hope = Hope.find_by(id:params[:id])
-		hope.destroy
-		flash[:notice] ="削除しました"
-		redirect_to("/hope/index")
-	else
-		@hope = Hope.find_by(id:params[:id])
+  		hope.destroy
+  		flash[:notice] ="削除しました"
+  		redirect_to("/hope/index")
+	  else
+		  @hope = Hope.find_by(id:params[:id])
 	  	@user = User.find_by(id:@hope.user_id)
 	  	@users = User.all
   	end
@@ -39,11 +39,13 @@ class HopeController < ApplicationController
   end
 
   def update
-  	hope = Hope.find_by(id:params[:id])
-  	hope.user_id = params[:user_id]
-  	hope.contents = params[:contents]
+  	@hope = Hope.find_by(id:params[:id])
+  	@hope.user_id = params[:user_id]
+  	@hope.contents = params[:contents]
+    @user = User.find_by(id:@hope.user_id)
+    @users = User.all
 
-  	if hope.save
+  	if @hope.save
   		flash[:notice] ="更新が完了しました"
   		redirect_to("/hope/index")
   	else

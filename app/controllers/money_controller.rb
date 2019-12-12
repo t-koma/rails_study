@@ -15,7 +15,8 @@ class MoneyController < ApplicationController
 
   end
 
-  def create
+  def create 
+
     bank_data = Bank.new
     bank_data.bank_day = params[:money_date].to_date
     bank_data.warehousing = params[:warehousing].to_i
@@ -216,7 +217,7 @@ class MoneyController < ApplicationController
   end
 
   def claim
-    @users = User.all.order(:id)
+    
   end
 
   def claim_create

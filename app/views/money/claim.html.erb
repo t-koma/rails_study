@@ -6,6 +6,7 @@
 					<span>氏名</span>
 					<br>
 					<select name="user_id" size="1">
+						<% @users = User.all.order(:id) %>
 						<% for user in @users do %>
 							<option value="<%= user.id %>"><%= user.name %></option>
 						<% end %>
