@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'money/new' => 'money#new'
   post 'money/create' => 'money#create'
   post 'money/claim' => 'money#claim'
+  post 'money/choice' => 'money#choice'
   get 'money/claim' => 'money#claim'
   post 'money/claim_create' => 'money#claim_create'
   post 'money/:id/collect_create' => 'money#collect_create'

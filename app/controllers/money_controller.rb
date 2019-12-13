@@ -4,6 +4,7 @@ class MoneyController < ApplicationController
 
   def bank_statement
   	@banks = Bank.all.order(bank_day: :desc)
+    params[:choice] = "すべて"
   end
 
   def shopping_history
@@ -77,15 +78,21 @@ class MoneyController < ApplicationController
 
     bank = Bank.find_by(warehousing:nil, bank_day: from..to)
 
-    #当月分データがあれば更新
     if bank && coll
+      #当月分データがあれば更新
       bank.bank_day = to
       bank.warehousing = nil
       bank.wh_id = @club_user
-      bank.money = bank.money - coll.collect + params[:collect_money].to_i
       bank.return_money = 0 #非常食部会計
-    #当月分データがなければ追加
+      if coll
+        #修正なら前回徴収金額を引いて今回修正金額を加算
+        bank.money = bank.money - coll.collect + params[:collect_money].to_i
+      else
+        #新規徴収なら何もせず加算
+        bank.money = bank.money + params[:collect_money].to_i
+      end
     else
+      #当月分データがなければ追加
       bank = Bank.new
       bank.bank_day = to
       bank.warehousing = nil
@@ -190,8 +197,6 @@ class MoneyController < ApplicationController
         render("money/history_fixed")
     end
 
-    
-
     #徴収入力データがない場合新規追加
     if coll == nil
       coll = Collect.new
@@ -246,6 +251,22 @@ class MoneyController < ApplicationController
 
   def client
 
+  end
+
+  def choice
+    case params[:choice]
+      when "入荷" then
+        @banks = Bank.where("warehousing > ?",0)
+      when "返却済" then
+        @banks = Bank.where(return_money:1)
+      when "未返却" then
+        @banks = Bank.where(return_money:2)
+      when "徴収" then
+        @banks = Bank.where(warehousing:nil)
+      else
+        @banks = Bank.all
+    end
+    render("money/bank_statement")
   end
 
 end

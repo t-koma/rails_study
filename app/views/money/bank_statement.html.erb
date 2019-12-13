@@ -1,22 +1,16 @@
-<script>
-    //function back_color_fixed(id_name,fixed_color) {
-        //alert("Pushed!");
-        //document.getElementById(id_name).style.backgroundColor = fixed_color;
-   // }
-
-    $(function() {
-        $('#bank_history_table').on('click', function() {
-          var td = $(this)[0];
-          var tr = $(this).closest('tr')[0];
-          console.log('td:' + td.cellIndex);
-         //console.log('tr:' + tr.rowIndex);
-         console.log($(this).text());
-        });
-      });
-</script>
-
 <div class="contents">
 	<div class="head_text"><span>入出金管理</span></div>
+	<div class="choice">
+		<div class="radio">
+			<%= form_tag("/money/choice") do %>
+			<% @radio_name = ["すべて","入荷","返却済","未返却","徴収"] %>
+			<% @radio_name.each do |radio_name| %>
+				<%= radio_button_tag "choice", "#{radio_name}", (radio_name == params[:choice]) %><%= radio_name %>
+			<% end %>
+			<span class="edit_btn"><input type="submit" value="絞り込み"></span>
+			<% end %>
+		</div>
+	</div>
 		<div class="state_table table_scroll">
 		<table id="bank_history_table">
 			<tr>

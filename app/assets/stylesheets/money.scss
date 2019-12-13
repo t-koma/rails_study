@@ -154,3 +154,17 @@
 	margin: 0 auto;
 	text-align: center;
 }
+
+.choice{
+	position: relative;
+	width: 750px;
+	height: 20px;
+	margin: 0 auto;
+}
+
+.radio{
+	position: absolute;
+	right:0px;
+	width:500px;
+	text-align: right;
+}
