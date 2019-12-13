@@ -1,6 +1,9 @@
 <div class="contents">
-	<div class="state_table">
-		<div class="head_text"><span>顧客情報管理</span></div>
+	<div class="head_text"><span>顧客情報管理</span></div>
+	<%= form_tag("/user/new") do %>
+		<div class="create_btn"><input type="submit" name="create" value="新規登録"></div>
+	<% end %>
+	<div class="state_table table_scroll">
 		<table>
 			<tr>
 				<th>ユーザーID</th>
@@ -20,10 +23,5 @@
 				<% end %>
 			<% end %>
 		</table>
-
-		<%= form_tag("/user/new") do %>
-			<div class="create_btn"><input type="submit" name="create" value="新規登録"></div>
-		<% end %>
-
 	</div>
 </div>

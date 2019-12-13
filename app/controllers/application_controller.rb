@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 		@Balance = 30000  #非常食部の財布残高
 	end
 
+	#ログインチェック
 	def check_login_user
 		if session[:admin_id] == nil
 			flash[:notice]  = "ログインしてください"

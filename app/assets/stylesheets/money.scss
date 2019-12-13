@@ -17,7 +17,10 @@
 .head_text{
 	width: 750px;
 	background-color: #bbded6;
+	margin:0 auto;
+	margin-top: 20px;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 .head_text span{
@@ -25,11 +28,15 @@
 	width: 750px;
 }
 
-.state_table{
+.state_table {
 	width: 750px;
+	height: 400px;
 	text-align: center;
 	margin:0 auto;
-	margin-top:50px;
+	margin-top:30px;
+}
+.table_scroll{
+	overflow:auto;
 }
 
 .state_table table{
@@ -141,4 +148,9 @@
 
 .uncollect{
 	background-color: #ffb6b9;
+}
+
+.create_btn{
+	margin: 0 auto;
+	text-align: center;
 }

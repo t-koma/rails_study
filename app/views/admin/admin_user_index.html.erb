@@ -1,6 +1,9 @@
 <div class="contents">
-	<div class="state_table">
-		<div class="head_text"><span>管理者登録 / 編集</span></div>
+	<div class="head_text"><span>管理者登録 / 編集</span></div>
+	<%= form_tag("/admin/new") do %>
+		<div class="create_btn"><input type="submit" name="create" value="新規登録"></div>
+	<% end %>
+	<div class="state_table table_scroll">
 		<table>
 			<tr>
 				<th>ユーザーID</th>
@@ -18,10 +21,5 @@
 				<% end %>
 			<% end %>
 		</table>
-
-		<%= form_tag("/admin/new") do %>
-			<div class="create_btn"><input type="submit" name="create" value="新規登録"></div>
-		<% end %>
-
 	</div>
 </div>

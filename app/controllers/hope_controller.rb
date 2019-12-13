@@ -1,4 +1,5 @@
 class HopeController < ApplicationController
+  before_action :check_login_user
   def index
   	@hope = Hope.all
   end
