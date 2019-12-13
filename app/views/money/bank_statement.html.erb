@@ -32,22 +32,9 @@
 					<td><%= bank.money %></td>
 					<td>
 						<!-- 非常食部財布で入荷した場合 -->
-						<% if bank.warehousing.to_i > 0 && bank.wh_id == @club_user %>
-							<% @Balance = @Balance - bank.money.to_i %>
-						<!-- 立替て入荷したがすでに非常食部財布から返却した場合 -->
-						<% elsif bank.warehousing.to_i > 0 && bank.return_money == 1 && bank.wh_id != @club_user %>
-							返金済
-							<% @Balance = @Balance - bank.money.to_i %>
-						<!-- 立替て入荷したがまだ非常食部財布から返却していない場合 -->
-						<% elsif bank.warehousing.to_i > 0 && bank.return_money == 2 && bank.wh_id != @club_user %>
-							未返金
-						<!-- 入金時 -->
-						<% elsif bank.warehousing == nil %>
-							<% @Balance = @Balance + bank.money.to_i %>
-							徴収
-						<% else %>
-							Error!
-						<% end %>
+						<% @remine = balance(bank) %>
+						<%= @remine[:message] %>
+
 					</td>
 					<td class="edit_btn"><input type="submit" value="編集" ></td>
 				</tr>
@@ -57,7 +44,7 @@
 			<!-- ここまで -->
 				<tr>
 					<td colspan="3" class="right_text">残高</td>
-					<td><%= @Balance %></td>
+					<td><%= @remine[:balance] %></td>
 					<td colspan="2" class="left_text">円</td>
 				</tr>
 

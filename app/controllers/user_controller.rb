@@ -54,8 +54,14 @@ class UserController < ApplicationController
   def destroy
   	user = User.find_by(id:params[:id])
   	user.destroy
+    claim = Claim.where(user_id:params[:id])
+    claim.destroy_all
+    collect = Collect.where(user_id:params[:id])
+    collect.destroy_all
+    hope = Hope.where(user_id:params[:id])
+    hope.destroy_all
   	flash[:notice] = "削除が完了しました"
-	redirect_to("/user/info")
+	  redirect_to("/user/info")
   end
 
 
