@@ -3,7 +3,6 @@
 	<div class="choice">
 		<div class="radio">
 			<%= form_tag("/money/choice") do %>
-			<% @radio_name = ["すべて","入荷","返却済","未返却","徴収"] %>
 			<% @radio_name.each do |radio_name| %>
 				<%= radio_button_tag "choice", "#{radio_name}", (radio_name == params[:choice]) %><%= radio_name %>
 			<% end %>
@@ -44,7 +43,13 @@
 			<!-- ここまで -->
 				<tr>
 					<td colspan="3" class="right_text">残高</td>
-					<td><%= @remine[:balance] %></td>
+					<td><% if @banks == nil %>
+							<%= @Balance %>
+						<% else %>
+							<%= @remine[:balance] %>
+						<% end %>
+
+							</td>
 					<td colspan="2" class="left_text">円</td>
 				</tr>
 

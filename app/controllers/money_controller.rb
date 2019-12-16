@@ -4,9 +4,16 @@ class MoneyController < ApplicationController
 
   def bank_statement
   	@banks = Bank.all.order(bank_day: :desc)
+    choice_radio
     params[:choice] = "すべて"
   end
 
+  #radioボタンの値
+  def choice_radio
+    @radio_name = ["すべて","入荷","返却済","未返金","徴収"]
+  end
+
+  #残金計算
   def balance(bank)
     if bank.warehousing.to_i > 0 && bank.wh_id == @club_user
         @Balance = @Balance - bank.money.to_i
@@ -35,11 +42,9 @@ class MoneyController < ApplicationController
 
   def edit
   	@bank_data = Bank.find_by(id: params[:id])
-
   end
 
   def create 
-
     bank_data = Bank.new
     bank_data.bank_day = params[:money_date].to_date
     bank_data.warehousing = params[:warehousing].to_i
@@ -88,44 +93,13 @@ class MoneyController < ApplicationController
   end
 
   def collect_create
-
-    now = Time.current 
-
     #新規データ追加
     coll = Collect.find_by(claim_id:params[:id].to_i)
 
-    #bankに当月分データとして登録
-    from = params[:collect_day].to_date.beginning_of_month
-    to = params[:collect_day].to_date.end_of_month
-
-    bank = Bank.find_by(warehousing:nil, bank_day: from..to)
-
-    if bank && coll
-      #当月分データがあれば更新
-      bank.bank_day = to
-      bank.warehousing = nil
-      bank.wh_id = @club_user
-      bank.return_money = 0 #非常食部会計
-      if coll
-        #修正なら前回徴収金額を引いて今回修正金額を加算
-        bank.money = bank.money - coll.collect + params[:collect_money].to_i
-      else
-        #新規徴収なら何もせず加算
-        bank.money = bank.money + params[:collect_money].to_i
-      end
-    else
-      #当月分データがなければ追加
-      bank = Bank.new
-      bank.bank_day = to
-      bank.warehousing = nil
-      bank.wh_id = @club_user
-      bank.money = params[:collect_money].to_i
-      bank.return_money = 0 #非常食部会計
-    end
-
-    if bank.save == false
-        flash[:notice] = "入出金履歴への反映に失敗しました"
-        render("money/collect")
+    #bankテーブルの更新
+    if bank_update(params[:collect_day],params[:collect_money],coll) == false
+      flash[:notice] = "入出金履歴への反映に失敗しました"
+      render("money/collect")
     end
 
     if coll == nil
@@ -158,6 +132,41 @@ class MoneyController < ApplicationController
     end
   end
 
+  def bank_update(collect_day,collect_money,coll)
+    #bankに当月分データとして登録
+    from = collect_day.to_date.beginning_of_month
+    to = collect_day.to_date.end_of_month
+
+    bank = Bank.find_by(warehousing:nil, bank_day: from..to)
+
+    if bank
+      #当月分データがあれば更新
+      bank.bank_day = to
+      bank.warehousing = nil
+      bank.wh_id = @club_user
+      bank.return_money = 0 #非常食部会計
+      if coll
+        #修正なら前回徴収金額を引いて今回修正金額を加算
+        bank.money = bank.money - coll.collect + collect_money.to_i
+      else
+        #新規徴収なら何もせず加算
+        bank.money = bank.money + collect_money.to_i
+      end
+    else
+      #当月分データがなければ追加
+      bank = Bank.new
+      bank.bank_day = to
+      bank.warehousing = nil
+      bank.wh_id = @club_user
+      bank.money = collect_money.to_i
+      bank.return_money = 0 #非常食部会計
+    end
+
+    bank.save
+
+  end
+
+
   def history
     @clas = Claim.where(user_id:params[:id])
   end
@@ -176,7 +185,6 @@ class MoneyController < ApplicationController
   end
 
   def history_update
-
     cla = Claim.find_by(id:params[:id])
 
     #請求金額と徴収金額を比較して支払い済フラグを更新する
@@ -187,36 +195,16 @@ class MoneyController < ApplicationController
     end
 
     #bankに当月分データとして登録
-    from = params[:collect_day].to_date.beginning_of_month
-    to = params[:collect_day].to_date.end_of_month
+    #from = params[:collect_day].to_date.beginning_of_month
+    #to = params[:collect_day].to_date.end_of_month
 
-    bank = Bank.find_by(warehousing:nil, bank_day: from..to)
+    #bank = Bank.find_by(warehousing:nil, bank_day: from..to)
     coll = Collect.find_by(claim_id:cla.id)
 
-    #当月分データがあれば更新
-    if bank
-      bank.bank_day = to
-      bank.warehousing = nil
-      bank.wh_id = @club_user
-      if coll
-        bank.money = bank.money - coll.collect.to_i + params[:collect_money].to_i
-      else
-        bank.money = bank.money + params[:collect_money].to_i
-      end
-      bank.return_money = 0 #非常食部会計
-    #当月分データがなければ追加
-    else
-      bank = Bank.new
-      bank.bank_day = to
-      bank.warehousing = nil
-      bank.wh_id = @club_user
-      bank.money = params[:collect_money].to_i
-      bank.return_money = 0 #非常食部会計
-    end
-
-    if bank.save == false
-        flash[:notice] = "入出金履歴への反映に失敗しました"
-        render("money/history_fixed")
+    #bankテーブルの更新
+    if bank_update(params[:collect_day],params[:collect_money],coll) == false
+      flash[:notice] = "入出金履歴への反映に失敗しました"
+      render("money/history_fixed")
     end
 
     #徴収入力データがない場合新規追加
@@ -265,10 +253,8 @@ class MoneyController < ApplicationController
   end
 
   def collection
-    now = Time.current
     #支払いがすんでいないデータを表示
     @clients = Claim.where(pay: false)
-
   end
 
   def client
@@ -288,6 +274,7 @@ class MoneyController < ApplicationController
       else
         @banks = Bank.all
     end
+    choice_radio
     render("money/bank_statement")
   end
 

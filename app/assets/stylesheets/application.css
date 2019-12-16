@@ -16,10 +16,15 @@
 
  header{
  	/*background-color: #E98D9A; */
+ 	height:80px;
  }
 
  .logo{
 	position: relative;
+}
+
+main{
+	height: 500px;
 }
 
 
