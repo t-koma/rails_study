@@ -33,3 +33,17 @@
 
 }
 
+.destroy_btn{
+	margin-top:10px;
+}
+table.hope_table tr[data-href]{
+  cursor: pointer;
+}
+
+.hope_table .data-tr{
+	background-color: white;
+}
+
+.hope_table .data-tr:hover{
+	background-color: #F6DB9E;
+}

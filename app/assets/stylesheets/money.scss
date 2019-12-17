@@ -168,3 +168,18 @@
 	width:500px;
 	text-align: right;
 }
+
+table#bank_history_table tr[data-href], table.client_data tr[data-href],
+table.history_data tr[data-href]{
+  cursor: pointer;
+}
+
+#bank_history_table .data-tr,.client_data .data-tr,
+.history_data .data-tr{
+	background-color: white;
+}
+
+#bank_history_table .data-tr:hover,.client_data .data-tr:hover,
+.history_data .data-tr:hover{
+	background-color: #F6DB9E;
+}

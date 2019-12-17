@@ -10,10 +10,9 @@
 					<th>徴収日</th>
 					<th>徴収金額</th>
 					<th>徴収者</th>
-					<th>編集</th>
 				</tr>
 					<% for cla in @clas do %>
-					<tr>
+					<tr data-href="<%= "/money/#{cla.id}/history_fixed" %>" class="data-tr">
 						<% @user = User.find_by(id: cla.user_id) 
 						    coll = Collect.find_by(claim_id:cla.id) %>
 						<%= form_tag("/money/#{cla.id}/history_fixed", method: :post) do %>
@@ -31,7 +30,6 @@
 								<td></td>
 								<td></td>
 							<% end %>
-							<td class="edit_btn"><input type="submit" name="fixed_btn" value="修正"></td>
 						<% end %>
 					</tr>
 					<% end %>

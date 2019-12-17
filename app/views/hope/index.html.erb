@@ -4,23 +4,19 @@
 		<div class="create_btn"><input type="submit" name="create" value="新規登録"></div>
 	<% end %>
 	<div class="state_table table_scroll">
-		<table>
+		<table class="hope_table">
 			<tr>
 				<th>ユーザーID</th>
 				<th>要望</th>
-				<th>編集</th>
-				<th>破棄</th>
 			</tr>
 
 			<% for hope in @hope do %>
-				<%= form_tag("/hope/#{hope.id}/edit") do %>
-					<tr>
-						<td><%= hope.user_id %></td>
-						<td><%= hope.contents %></td>
-						<td class="edit_btn"><input type="submit" name="fixed" value="編集"></td>
-						<td class="edit_btn"><input type="submit" name="complete" value="破棄"></td>				
-					</tr>
-				<% end %>
+				<tr data-href="<%= "/hope/#{hope.id}/edit" %>" class="data-tr">
+					<%= form_tag("/hope/#{hope.id}/edit") do %>
+					<td><%= hope.user_id %></td>
+					<td><%= hope.contents %></td>
+					<% end %>		
+				</tr>
 			<% end %>
 		</table>
 	</div>

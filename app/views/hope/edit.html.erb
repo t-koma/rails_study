@@ -21,5 +21,10 @@
 				<input type="submit" name="submit" value="登録">
 			</div>
 		<% end %>
+		<div class="edit_btn">
+			<%= form_tag("/hope/#{@hope.id}/destory") do %>
+				<input type="submit" class="destroy_btn" value="削除">
+			<% end %>
+		</div>
 	</div>
 </div>

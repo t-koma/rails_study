@@ -11,20 +11,15 @@
 				<th>氏名</th>
 				<th>請求日</th>
 				<th>請求金額</th>
-				<th>徴収</th>
 			</tr>
 				<% for client in @clients do %>
-				<tr>
+				<tr data-href="<%= "/money/#{client.id}/collect" %>" class="data-tr">
 					<%= form_tag("/money/#{client.id}/collect", method: :post) do %>
 					<% @user = User.find_by(id: client.user_id) %>
 					<td><%= client.id %></td>
 					<td><%= @user.name %></td>
 					<td><%= client.claim_day.strftime('%Y/%m/%d') %></td>
-					<td><%= client.claim %></td>	
-					<td class="edit_btn">
-						<input type="submit" name="collect" value="徴収">
-					</td>
-					
+					<td><%= client.claim %></td>		
 					<% end %>
 				</tr>
 				<% end %>

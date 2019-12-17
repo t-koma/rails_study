@@ -18,13 +18,12 @@
 				<th>入出金元</th>
 				<th>金額</th>
 				<th>返金</th>
-				<th>編集</th>
 			</tr>
 			<!-- テーブルのデータ分繰り返す -->
 			<% for bank in @banks do %>
 				<% admin = Admin.find_by(user_id: bank.wh_id) %>
 				<%= form_tag("/money/#{bank.id}/edit") do %>
-				<tr>
+				<tr data-href="<%= "/money/#{bank.id}/edit" %>" class="data-tr">
 					<td><%= bank.bank_day.strftime('%Y/%m/%d') %></td>
 					<td><%= bank.warehousing.to_i %></td>
 					<td><%= admin.name %></td>
@@ -35,7 +34,6 @@
 						<%= @remine[:message] %>
 
 					</td>
-					<td class="edit_btn"><input type="submit" value="編集" ></td>
 				</tr>
 				<% end %>
 				

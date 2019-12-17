@@ -25,17 +25,9 @@ class HopeController < ApplicationController
   end
 
   def edit
-  	#削除ボタン押下
-  	if params[:complete]
-  		hope = Hope.find_by(id:params[:id])
-  		hope.destroy
-  		flash[:notice] ="削除しました"
-  		redirect_to("/hope/index")
-	  else
-		  @hope = Hope.find_by(id:params[:id])
-	  	@user = User.find_by(id:@hope.user_id)
-	  	@users = User.all
-  	end
+	  @hope = Hope.find_by(id:params[:id])
+  	@user = User.find_by(id:@hope.user_id)
+  	@users = User.all
 
   end
 
@@ -54,5 +46,12 @@ class HopeController < ApplicationController
   		render("hope/edit")
   	end
 
+  end
+
+  def destroy
+    hope = Hope.find_by(id:params[:id])
+    hope.destroy
+    flash[:notice] ="削除しました"
+    redirect_to("/hope/index")
   end
 end

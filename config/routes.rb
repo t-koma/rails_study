@@ -16,8 +16,10 @@ Rails.application.routes.draw do
   post 'money/:id/update' => 'money#update'
   get 'money/:id/history' => 'money#history'
   post 'money/:id/history_fixed' => 'money#history_fixed'
+  get 'money/:id/history_fixed' => 'money#history_fixed'
   post 'money/:id/history_update' => 'money#history_update'
   post 'money/:id/collect' => 'money#collect'
+  get 'money/:id/collect' => 'money#collect'
   post 'money/:id/client' => 'money#client'
 
   
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
 
   get 'hope/index' => 'hope#index'
   post 'hope/new' => 'hope#new'
+  get 'hope/:id/edit' => 'hope#edit'
   post 'hope/:id/edit' => 'hope#edit'
   post 'hope/create' => 'hope#create'
   post 'hope/:id/update' => 'hope#update'
