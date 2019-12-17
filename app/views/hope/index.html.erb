@@ -7,14 +7,14 @@
 		<table class="hope_table">
 			<tr>
 				<th>ユーザーID</th>
-				<th>要望</th>
+				<th class="hope_data">要望</th>
 			</tr>
 
 			<% for hope in @hope do %>
 				<tr data-href="<%= "/hope/#{hope.id}/edit" %>" class="data-tr">
 					<%= form_tag("/hope/#{hope.id}/edit") do %>
 					<td><%= hope.user_id %></td>
-					<td><%= hope.contents %></td>
+					<td class="hope_data"><%= hope.contents %></td>
 					<% end %>		
 				</tr>
 			<% end %>
