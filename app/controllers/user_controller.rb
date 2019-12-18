@@ -1,10 +1,11 @@
 class UserController < ApplicationController
   before_action :check_login_user
+  before_action :set_current_user
   
   def user_info
   	@users = User.all.order("id")
     if params[:history]
-      render("money/history")
+      render("user_history/index")
     end
   end
 
@@ -31,7 +32,7 @@ class UserController < ApplicationController
   def edit
   	
     if params[:history]
-      redirect_to("/money/#{params[:id]}/history")
+      redirect_to("/user_history/#{params[:id]}/index")
     elsif params[:fixed]
       @user = User.find_by(id:params[:id])
     else

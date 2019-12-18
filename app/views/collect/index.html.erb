@@ -1,6 +1,6 @@
 <div class="head_text"><span>徴収管理</span></div>
 	<div class="create_btn">
-		<%= form_tag("/money/claim", method: :post) do %>
+		<%= form_tag("/claim/new", method: :post) do %>
 			<input type="submit" name="claim" value="請求登録" class="side_btn">
 		<% end %>
 		<%= link_to "CSV出力", money_exp_csv_path(format: :csv),class: "edit_a_btn side_btn" %>	
@@ -15,8 +15,8 @@
 				<th>請求金額</th>
 			</tr>
 				<% for client in @clients do %>
-				<tr data-href="<%= "/money/#{client.id}/collect" %>" class="data-tr">
-					<%= form_tag("/money/#{client.id}/collect", method: :post) do %>
+				<tr data-href="<%= "/collect/#{client.id}/new" %>" class="data-tr">
+					<%= form_tag("/collect/#{client.id}/new", method: :post) do %>
 					<% @user = User.find_by(id: client.user_id) %>
 					<td><%= client.id %></td>
 					<td><%= @user.name %></td>

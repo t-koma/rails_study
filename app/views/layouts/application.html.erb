@@ -19,9 +19,9 @@
           <% if @current_user %>
             <span class="menu_link">
               <%= "ログイン：#{@current_user.name}" %>  
-              <%= link_to("入出金履歴","/money/bank_statement") %>
+              <%= link_to("入出金履歴","/money/index") %>
               <%= link_to("買い出し管理","/money/new") %>
-              <%= link_to("徴収管理","/money/collection") %>
+              <%= link_to("徴収管理","/collect/index") %>
               <%= link_to("顧客情報管理","/user/info") %>
               <%= link_to("要望管理","/hope/index") %>
               <%= link_to("管理者登録/編集","/admin/index") %>

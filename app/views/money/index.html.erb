@@ -26,10 +26,10 @@
 				<tr data-href="<%= "/money/#{bank.id}/edit" %>" class="data-tr">
 					<td><%= bank.bank_day.strftime('%Y/%m/%d') %></td>
 					<td><%= bank.warehousing.to_i %></td>
+					<% logger.debug("wh_id: #{bank.wh_id}") %>
 					<td><%= admin.name %></td>
 					<td><%= bank.money %></td>
 					<td>
-						<!-- 非常食部財布で入荷した場合 -->
 						<% @remine = balance(bank) %>
 						<%= @remine[:message] %>
 

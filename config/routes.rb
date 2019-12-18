@@ -1,31 +1,41 @@
 Rails.application.routes.draw do
-  get 'hope/index'
-  get 'money/bank_statement' => 'money#bank_statement'
-  get 'money/shopping_history' => 'money#shopping_history'
-  get 'money/collection' => 'money#collection'
+
+  #メニュー
+  get 'menu/index'
+  #入出金管理、買い出し登録
+  get 'money/index' => 'money#index'
   post 'money/new' => 'money#new'
   get 'money/new' => 'money#new'
   post 'money/create' => 'money#create'
-  post 'money/claim' => 'money#claim'
-  post 'money/choice' => 'money#choice'
-  get 'money/claim' => 'money#claim'
-  post 'money/claim_create' => 'money#claim_create'
-  get 'money/exp_csv' => 'money#exp_csv'
-  post 'money/exp_csv' => 'money#exp_csv'
-  post 'money/:id/collect_create' => 'money#collect_create'
   get 'money/:id/edit' => 'money#edit'
   post 'money/:id/edit' => 'money#edit'
   post 'money/:id/update' => 'money#update'
-  get 'money/:id/history' => 'money#history'
-  post 'money/:id/history_fixed' => 'money#history_fixed'
-  get 'money/:id/history_fixed' => 'money#history_fixed'
-  post 'money/:id/history_update' => 'money#history_update'
-  post 'money/:id/collect' => 'money#collect'
-  get 'money/:id/collect' => 'money#collect'
-  post 'money/:id/client' => 'money#client'
 
+  #徴収
+  post 'collect/index' => 'collect#index'
+  get 'collect/index' => 'collect#index'
+  post 'collect/:id/new' => 'collect#new'
+  get 'collect/:id/new' => 'collect#new'
+  post 'collect/:id/show' => 'collect#show'
+  get 'collect/:id/show' => 'collect#show'
+  post 'collect/:id/create' => 'collect#create'
+
+  #請求
+  post 'claim/new' => 'claim#new'
+  get 'claim/new' => 'claim#new'
+  post 'claim/create' => 'claim#create'
   
-  get 'menu/index'
+  #個人履歴
+  get 'user_history/:id/index' => 'user_history#index'
+  post 'user_history/:id/edit' => 'user_history#edit'
+  get 'user_history/:id/edit' => 'user_history#edit'
+  post 'user_history/:id/update' => 'user_history#update'
+  
+  
+  post 'money/choice' => 'money#choice'
+  get 'money/exp_csv' => 'money#exp_csv'
+  post 'money/exp_csv' => 'money#exp_csv'
+
   get 'admin/login' => 'admin#login_form'
   get 'user/info' => 'user#user_info'
   post 'user/new' => 'user#new'
