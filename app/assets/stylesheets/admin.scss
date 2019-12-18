@@ -69,3 +69,20 @@ ul{
 .repass{
 	text-align: left;
 }
+
+
+table.admin_user_table tr[data-href]{
+  cursor: pointer;
+}
+
+.admin_user_table .data-tr{
+	background-color: white;
+}
+
+.admin_user_table .data-tr:hover{
+	background-color: #F6DB9E;
+}
+
+.admin_user_table {
+	width:450px;
+}

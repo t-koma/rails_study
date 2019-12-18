@@ -1,8 +1,10 @@
 <div class="head_text"><span>徴収管理</span></div>
 	<div class="create_btn">
 		<%= form_tag("/money/claim", method: :post) do %>
-			<input type="submit" name="claim" value="請求登録">
+			<input type="submit" name="claim" value="請求登録" class="side_btn">
 		<% end %>
+		<%= link_to "CSV出力", money_exp_csv_path(format: :csv),class: "edit_a_btn side_btn" %>	
+		<div class="clear_float"></div>
 	</div>
 	<div class="state_table table_scroll">
 		<table class="client_data">

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'money/choice' => 'money#choice'
   get 'money/claim' => 'money#claim'
   post 'money/claim_create' => 'money#claim_create'
+  get 'money/exp_csv' => 'money#exp_csv'
+  post 'money/exp_csv' => 'money#exp_csv'
   post 'money/:id/collect_create' => 'money#collect_create'
   get 'money/:id/edit' => 'money#edit'
   post 'money/:id/edit' => 'money#edit'
@@ -47,6 +49,7 @@ Rails.application.routes.draw do
   post 'admin/new' => 'admin#new'
   post 'admin/create' => 'admin#create'
   post 'admin/:id/edit' => 'admin#edit'
+  get 'admin/:id/edit' => 'admin#edit'
   post 'admin/:id/update' => 'admin#update'
 
   get '/' => 'admin#login_form'

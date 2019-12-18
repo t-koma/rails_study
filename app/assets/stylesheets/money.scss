@@ -151,6 +151,7 @@
 }
 
 .create_btn{
+	width: 580px;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -182,4 +183,33 @@ table.history_data tr[data-href]{
 #bank_history_table .data-tr:hover,.client_data .data-tr:hover,
 .history_data .data-tr:hover{
 	background-color: #F6DB9E;
+}
+
+
+.side_btn {
+	float:left;
+	margin-left: 10px;
+
+}
+.clear_float{
+	clear: both;
+}
+
+.edit_a_btn{
+	display: block;
+	width: 270px;
+	height: 22px;
+	margin-top: 20px;
+	text-decoration: none;
+	border: solid 2px #8ac6d1;
+    border-radius: 3px;
+    font-size: 13px;
+    transition: .4s;
+	background-color: white;
+	color: #8ac6d1;
+}
+.edit_a_btn:hover {
+	background: #8ac6d1;
+	color: white;
+  	cursor: pointer;
 }
