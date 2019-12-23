@@ -16,7 +16,9 @@ class AdminController < ApplicationController
   end
 
   def login_form
-
+    if session[:admin_id] 
+      redirect_to("/menu/index")
+    end
   end
 
   def logout

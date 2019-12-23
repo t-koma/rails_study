@@ -14,7 +14,6 @@ class MoneyController < ApplicationController
   def balance(bank)
     logger.debug("balance:#{@Balance}")
     if bank == nil
-
       @remine = {balance:@Balance,message:""}
     elsif bank.warehousing.to_i > 0 && bank.wh_id == @club_user
         @Balance = @Balance - bank.money.to_i
@@ -35,10 +34,6 @@ class MoneyController < ApplicationController
         message = "Error!"
       end
       @remine = {balance:@Balance,message:message}
-  end
-
-  def shopping_history
-
   end
 
   def edit

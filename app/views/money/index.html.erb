@@ -44,6 +44,7 @@
 					<td><% if @banks == nil %>
 							<%= @Balance %>
 						<% else %>
+							<% @remine = balance(nil) %>
 							<%= @remine[:balance] %>
 						<% end %>
 
