@@ -8,10 +8,7 @@ class ClaimController < ApplicationController
 
   def create
   	#新規データ追加
-    cla = Claim.new
-    cla.claim_day = params[:claim_day]
-    cla.user_id = params[:user_id]
-    cla.claim = params[:claim_money]
+    cla = Claim.new(claim_params)
     cla.pay = false
 
     if cla.save
@@ -21,6 +18,11 @@ class ClaimController < ApplicationController
       flash[:notice] = "登録に失敗しました"
       render("claim/new")
     end
+  end
+
+  private
+  def claim_params
+    params.permit(:claim_day, :user_id, :claim)
   end
 
 end

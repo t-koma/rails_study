@@ -17,8 +17,7 @@ class UserController < ApplicationController
   end
 
   def create
-  	user = User.new
-  	user.name = params[:name]
+  	user = User.new(user_params)
 
   	if user.save
   		flash[:notice] = "登録が完了しました"
@@ -42,8 +41,7 @@ class UserController < ApplicationController
 
   def update
   	user = User.find_by(id:params[:id])
-  	user.name = params[:name]
-  	if user.save
+  	if user.update(user_params)
   		flash[:notice] = "更新が完了しました"
   		redirect_to("/user/info")
   	else
@@ -63,6 +61,11 @@ class UserController < ApplicationController
     hope.destroy_all
   	flash[:notice] = "削除が完了しました"
 	  redirect_to("/user/info")
+  end
+
+  private
+  def user_params
+    params.permit(:name)
   end
 
 

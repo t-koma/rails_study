@@ -39,14 +39,10 @@ class AdminController < ApplicationController
   end
 
   def create
-    @admin = Admin.new
-    @admin.user_id = params[:user_id]
-    @admin.name = params[:name]
+    @admin = Admin.new(admin_params)
     if params[:pass] != params[:pass_confirmation]
       flash[:notice] = "パスワードに誤りがあります"
       render("admin/new") and return
-    else
-      @admin.pass = params[:pass]
     end
 
     if @admin.save
@@ -65,16 +61,12 @@ class AdminController < ApplicationController
 
   def update
     @admin = Admin.find_by(id:params[:id])
-    @admin.user_id = params[:user_id]
-    @admin.name = params[:name]
     if params[:pass] != params[:pass_confirmation]
       flash[:notice] = "パスワードに誤りがあります"
       render("admin/edit") and return
-    else
-      @admin.pass = params[:pass]
     end
 
-    if @admin.save
+    if @admin.update(admin_params)
       flash[:notice] ="登録が正常に終了しました"
       redirect_to("/admin/index")
     else
@@ -82,6 +74,11 @@ class AdminController < ApplicationController
       render("admin/edit") and return
     end
 
+  end
+
+  private
+  def admin_params
+    params.permit(:user_id,:pass,:name)
   end
 end
 

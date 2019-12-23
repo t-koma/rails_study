@@ -1,19 +1,21 @@
 <div class="head_text"><span>徴収入力</span></div>
 <div class="state_table">
 		<div class="recontents">
+			<% logger.debug("@claim.id:#{@claim.id}") %>
 			<%= form_tag("/collect/#{@claim.id}/create") do %>
 				<div class="data_contents">
 					<span>氏名</span>
 					<br>
 					<input type="text" name="collect_name" value="<%= @user.name %>" disabled>
 					<input type="hidden" name="user_id" value="<%= @user.id %>"> 
+					<input type="hidden" name="claim_id" value="<%= @claim.id %>">
 					<br>
 					<span>徴収金額</span>
 					<br>
 					<% if @coll %>
-						<input type="text" name="collect_money" value="<%= @coll.collect %>">
+						<input type="text" name="collect" value="<%= @coll.collect %>">
 					<% else %>
-						<input type="text" name="collect_money">
+						<input type="text" name="collect">
 					<% end %>
 					<br>
 					<span>徴収日</span>
@@ -28,7 +30,7 @@
 					<br>
 					<% @admin = Admin.find_by(user_id: @current_user.user_id) %>
 					<% @admins = Admin.all.order(user_id: "asc") %>
-					<select name="admin_id" size="1">
+					<select name="admin_user_id" size="1">
 						<option value="<%= @admin.user_id %>"><%= @admin.name %></option>
 						<% for admin in @admins do %>
 						<option value="<%= admin.user_id %>"><%= admin.name %></option>
