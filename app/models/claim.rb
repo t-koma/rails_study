@@ -6,4 +6,8 @@ class Claim < ApplicationRecord
   def collect
     @collect = Collect.find_by(claim_id:self.id)
   end
+
+  def user
+    @user = User.find_by(id:self.user_id)
+  end
 end

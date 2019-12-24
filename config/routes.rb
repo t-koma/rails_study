@@ -31,10 +31,9 @@ Rails.application.routes.draw do
   get 'user_history/:id/edit' => 'user_history#edit'
   post 'user_history/:id/update' => 'user_history#update'
   
-  
   post 'money/choice' => 'money#choice'
-  get 'money/exp_csv' => 'money#exp_csv'
-  post 'money/exp_csv' => 'money#exp_csv'
+  get 'money/exp_csv' => 'exportcsv#index'
+  post 'money/exp_csv' => 'exportcsv#index'
 
   get 'admin/login' => 'admin#login_form'
   get 'user/info' => 'user#user_info'

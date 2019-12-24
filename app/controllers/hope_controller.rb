@@ -10,9 +10,7 @@ class HopeController < ApplicationController
   end
 
   def create
-  	hope = Hope.new
-  	hope.user_id = params[:user_id]
-  	hope.contents = params[:contents]
+  	hope = Hope.new(hope_params)
 
   	if hope.save
   		flash[:notice] = "登録が完了しました"
@@ -26,19 +24,17 @@ class HopeController < ApplicationController
 
   def edit
 	  @hope = Hope.find_by(id:params[:id])
-  	@user = User.find_by(id:@hope.user_id)
+  	@user = @hope.user
   	@users = User.all
 
   end
 
   def update
   	@hope = Hope.find_by(id:params[:id])
-  	@hope.user_id = params[:user_id]
-  	@hope.contents = params[:contents]
-    @user = User.find_by(id:@hope.user_id)
+    @user = @hope.user
     @users = User.all
 
-  	if @hope.save
+  	if @hope.update(hope_params)
   		flash[:notice] ="更新が完了しました"
   		redirect_to("/hope/index")
   	else
@@ -53,5 +49,11 @@ class HopeController < ApplicationController
     hope.destroy
     flash[:notice] ="削除しました"
     redirect_to("/hope/index")
+  end
+
+  private
+
+  def hope_params
+    params.permit(:user_id, :contents)
   end
 end
