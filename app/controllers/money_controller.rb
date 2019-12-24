@@ -4,11 +4,11 @@ class MoneyController < ApplicationController
 
   def index
   	@banks = Bank.all.order(bank_day: :desc)
-    choice_radio
+    radio = BankView.new
+    radio.choice_radio
     params[:choice] = "すべて"
   end
 
- 
   #残金計算
   def balance(bank)
     logger.debug("balance:#{@Balance}")
@@ -59,7 +59,6 @@ class MoneyController < ApplicationController
 
   def update
   	bank_fix_data = Bank.find_by(id:params[:id].to_i)
-
   	if bank_fix_data.update(money_params)
   		flash[:notice] = "更新が完了しました"
   		redirect_to("/money/index")
@@ -73,7 +72,7 @@ class MoneyController < ApplicationController
 
   end
 
-  def choice
+ def choice
     case params[:choice]
       when "入荷" then
         @banks = Bank.where("warehousing > ?",0)
@@ -94,8 +93,6 @@ class MoneyController < ApplicationController
   def choice_radio
     @radio_name = ["すべて","入荷","返却済","未返金","徴収"]
   end
-
-  
 
   helper_method :balance
 

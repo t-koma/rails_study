@@ -3,10 +3,10 @@
 	<div class="choice">
 		<div class="radio">
 			<%= form_tag("/money/choice") do %>
-			<% @radio_name.each do |radio_name| %>
-				<%= radio_button_tag "choice", "#{radio_name}", (radio_name == params[:choice]) %><%= radio_name %>
-			<% end %>
-			<span class="edit_btn"><input type="submit" value="絞り込み"></span>
+				<% @radio_name.each do |radio_name| %>
+					<%= radio_button_tag "choice", "#{radio_name}", (radio_name == params[:choice]) %><%= radio_name %>
+				<% end %>
+				<span class="edit_btn"><input type="submit" value="絞り込み"></span>
 			<% end %>
 		</div>
 	</div>
@@ -26,13 +26,11 @@
 				<tr data-href="<%= "/money/#{bank.id}/edit" %>" class="data-tr">
 					<td><%= bank.bank_day.strftime('%Y/%m/%d') %></td>
 					<td><%= bank.warehousing.to_i %></td>
-					<% logger.debug("wh_id: #{bank.wh_id}") %>
 					<td><%= admin.name %></td>
 					<td><%= bank.money %></td>
 					<td>
 						<% @remine = balance(bank) %>
 						<%= @remine[:message] %>
-
 					</td>
 				</tr>
 				<% end %>
@@ -41,22 +39,19 @@
 			<!-- ここまで -->
 				<tr>
 					<td colspan="3" class="right_text">残高</td>
-					<td><% if @banks == nil %>
+					<td>
+						<% if @banks == nil %>
 							<%= @Balance %>
 						<% else %>
 							<% @remine = balance(nil) %>
 							<%= @remine[:balance] %>
 						<% end %>
-
-							</td>
+					</td>
 					<td colspan="2" class="left_text">円</td>
 				</tr>
-
 			</table>
-		
-				
-	</div>
 
+	</div>
 </div>
 
 
