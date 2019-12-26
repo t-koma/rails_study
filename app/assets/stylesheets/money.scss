@@ -11,7 +11,6 @@
 
 .left_text{
 	text-align: left;
-
 }
 
 .head_text{
@@ -166,7 +165,8 @@
 .radio{
 	position: absolute;
 	right:0px;
-	width:500px;
+	width:750px;
+	height: 30px;
 	text-align: right;
 }
 
@@ -202,14 +202,36 @@ table.history_data tr[data-href]{
 	margin-top: 20px;
 	text-decoration: none;
 	border: solid 2px #8ac6d1;
-    border-radius: 3px;
-    font-size: 13px;
-    transition: .4s;
+  border-radius: 3px;
+  font-size: 13px;
+  transition: .4s;
 	background-color: white;
 	color: #8ac6d1;
 }
 .edit_a_btn:hover {
 	background: #8ac6d1;
 	color: white;
-  	cursor: pointer;
+  cursor: pointer;
+}
+.balance_edit_link{
+	display: block;
+	width: 100px;
+	height: 22px;
+	text-align: center;
+	text-decoration: none;
+	border: solid 2px #8ac6d1;
+  border-radius: 3px;
+  font-size: 13px;
+  transition: .4s;
+	background-color: white;
+	color: #8ac6d1;
+}
+.balance_edit_link:hover {
+	background: #8ac6d1;
+	color: white;
+  cursor: pointer;
+}
+
+.left_btn{
+	float:left;
 }

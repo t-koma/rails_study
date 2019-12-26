@@ -1,0 +1,14 @@
+<div class="contents">
+  <div class="head_text"><span>残高更新</span></div>
+  <div class="state_table">
+    <%= form_tag("/safe/#{@safe.id}/update") do %>
+      <div class="safe_text">残高</div>
+      <input type="text" name="balance" class="safe_balance" value="<%= @safe.balance %>">
+      <br>
+      <div class="edit_btn">
+        <input type="submit" value="更新">
+      </div>
+    <% end %>
+  </div>
+
+</div>

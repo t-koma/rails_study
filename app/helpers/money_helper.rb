@@ -23,4 +23,9 @@ module MoneyHelper
     end
     @remine = {balance:@Balance,message:message}
   end
+
+  def safe
+    safe = Safe.find_by(id:1)
+    @Balance = safe.balance
+  end
 end

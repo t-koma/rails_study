@@ -61,6 +61,9 @@ Rails.application.routes.draw do
   get 'admin/:id/edit' => 'admin#edit'
   post 'admin/:id/update' => 'admin#update'
 
+  get 'safe/edit' => 'safe#edit'
+  post 'safe/:id/update' => 'safe#update'
+
   get '/' => 'admin#login_form'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,2 @@
+module SafeHelper
+end

@@ -3,13 +3,13 @@ class ApplicationController < ActionController::Base
 	before_action :set_club
 	
 	def set_current_user
-  		@current_user = Admin.find_by(user_id: session[:admin_id])
+  	@current_user = Admin.find_by(user_id: session[:admin_id])
 	end
 
 	#「非常食部」のユーザーIDは999
 	def set_club
 		@club_user = "999"
-		@Balance = 30000  #非常食部の財布残高
+		@Balance = Safe.find_by(id:1)  #非常食部の財布残高
 	end
 
 	#ログインチェック

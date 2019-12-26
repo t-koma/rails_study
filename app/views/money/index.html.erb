@@ -2,12 +2,16 @@
 	<div class="head_text"><span>入出金管理</span></div>
 	<div class="choice">
 		<div class="radio">
+			<% if @current_user.user_id == @club_user %>
+				<%= link_to("残高修正",safe_edit_path,class: "balance_edit_link left_btn") %>
+			<% end %>
 			<%= form_tag("/money/choice") do %>
 				<% @radio_name.each do |radio_name| %>
 					<%= radio_button_tag "choice", "#{radio_name}", (radio_name == params[:choice]) %><%= radio_name %>
 				<% end %>
 				<span class="edit_btn"><input type="submit" value="絞り込み"></span>
 			<% end %>
+			<div class="clear_float"></div>
 		</div>
 	</div>
 		<div class="state_table table_scroll">
@@ -19,6 +23,7 @@
 				<th>金額</th>
 				<th>返金</th>
 			</tr>
+			<% safe %>
 			<!-- テーブルのデータ分繰り返す -->
 			<% for bank in @banks do %>
 				<% admin = Admin.find_by(user_id: bank.wh_id) %>
