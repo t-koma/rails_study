@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   post 'money/exp_csv' => 'exportcsv#index'
 
   get 'admin/login' => 'admin#login_form'
-  get 'user/info' => 'user#user_info'
+  get 'user/index' => 'user#index'
   post 'user/new' => 'user#new'
   get 'user/new' => 'user#new'
   post 'user/create' => 'user#create'

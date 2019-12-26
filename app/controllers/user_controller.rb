@@ -2,14 +2,11 @@ class UserController < ApplicationController
   before_action :check_login_user
   before_action :set_current_user
   
-  def user_info
+  def index
   	@users = User.all.order("id")
     if params[:history]
       render("user_history/index")
     end
-  end
-
-  def hope
   end
 
   def new
@@ -21,7 +18,7 @@ class UserController < ApplicationController
 
   	if user.save
   		flash[:notice] = "登録が完了しました"
-  		redirect_to("/user/info")
+  		redirect_to("/user/index")
   	else
   		flash[:notice] ="登録に失敗しました"
   		render("user/new")
@@ -43,7 +40,7 @@ class UserController < ApplicationController
   	user = User.find_by(id:params[:id])
   	if user.update(user_params)
   		flash[:notice] = "更新が完了しました"
-  		redirect_to("/user/info")
+  		redirect_to("/user/index")
   	else
   		flash[:notice] = "更新に失敗しました"
   		render("user/new")
@@ -60,7 +57,7 @@ class UserController < ApplicationController
     hope = Hope.where(user_id:params[:id])
     hope.destroy_all
   	flash[:notice] = "削除が完了しました"
-	  redirect_to("/user/info")
+	  redirect_to("/user/index")
   end
 
   private

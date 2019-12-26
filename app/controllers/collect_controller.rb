@@ -2,11 +2,6 @@ class CollectController < ApplicationController
   require './app/controllers/commonclass/bank_history'
   before_action :set_current_user
   before_action :check_login_user
-  def show
-  	@claim = Claim.find_by(id:params[:id])
-    @user = User.find_by(id:@claim.user_id)
-    @coll = Collect.find_by(claim_id:@claim.id)
-  end
 
   def index
   	@clients = Claim.where(pay: false)
@@ -14,8 +9,8 @@ class CollectController < ApplicationController
 
   def new
   	@claim = Claim.find_by(id:params[:id])
-    @user = User.find_by(id:@claim.user_id)
-    @coll = Collect.find_by(claim_id:@claim.id)
+    @user = @claim.user
+    @coll = @claim.collect
   end
 
   def create
@@ -38,7 +33,7 @@ class CollectController < ApplicationController
     end
 
     #請求と徴収の金額が一致した場合、支払い済みフラグを建てる
-    cla = Claim.find_by(id:params[:claim_id])
+    cla = coll.claim
     if cla.claim == params[:collect].to_i
       cla.pay = true
       if cla.save == false
@@ -55,7 +50,7 @@ class CollectController < ApplicationController
       render("collect/new")
     end
 
-   end
+  end
 
    private
 

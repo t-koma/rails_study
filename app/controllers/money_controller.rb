@@ -2,37 +2,11 @@ class MoneyController < ApplicationController
   before_action :check_login_user
 	before_action :set_club
 
+
   def index
   	@banks = Bank.all.order(bank_day: :desc)
-    radio = BankView.new
-    radio.choice_radio
+    choice_radio
     params[:choice] = "すべて"
-  end
-
-  #残金計算
-  def balance(bank)
-    logger.debug("balance:#{@Balance}")
-    if bank == nil
-      @remine = {balance:@Balance,message:""}
-    elsif bank.warehousing.to_i > 0 && bank.wh_id == @club_user
-      @Balance = @Balance - bank.money.to_i
-      message = ""
-    #立替て入荷したがすでに非常食部財布から返却した場合
-    elsif bank.warehousing.to_i > 0 && bank.return_money == 1 && bank.wh_id != @club_user
-      @Balance = @Balance - bank.money.to_i
-      message="返金済"
-    #立替て入荷したがまだ非常食部財布から返却していない場合
-    elsif bank.warehousing.to_i > 0 && bank.return_money == 2 && bank.wh_id != @club_user
-      message="未返金"
-    #入金時
-    elsif bank.warehousing == nil
-      @Balance = @Balance + bank.money.to_i
-      message="徴収"
-    else
-      @Balance = 0
-      message = "Error!"
-    end
-    @remine = {balance:@Balance,message:message}
   end
 
   def edit
@@ -78,7 +52,7 @@ class MoneyController < ApplicationController
         @banks = Bank.where("warehousing > ?",0)
       when "返却済" then
         @banks = Bank.where(return_money:1)
-      when "未返却" then
+      when "未返金" then
         @banks = Bank.where(return_money:2)
       when "徴収" then
         @banks = Bank.where(warehousing:nil)
@@ -93,8 +67,6 @@ class MoneyController < ApplicationController
   def choice_radio
     @radio_name = ["すべて","入荷","返却済","未返金","徴収"]
   end
-
-  helper_method :balance
 
   private
 
